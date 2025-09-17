@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden Blog 🌱</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            margin: 10px;
+        }
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .features {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .feature {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Digital Garden Blog ✨</h1>
+        <p>A beautiful, responsive blog application with modern UI and authentication</p>
+        
+        <a href="public/index.html" class="btn">🚀 Enter Blog</a>
+        <a href="https://github.com/Cyberopsorg/Blog-website-" class="btn">📂 View Code</a>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🔐 Authentication</h3>
+                <p>Secure login system</p>
+            </div>
+            <div class="feature">
+                <h3>🌙 Dark/Light Theme</h3>
+                <p>Toggle themes</p>
+            </div>
+            <div class="feature">
+                <h3>📱 Responsive</h3>
+                <p>Works on all devices</p>
+            </div>
+            <div class="feature">
+                <h3>🍃 MongoDB Ready</h3>
+                <p>Database integration</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px; font-size: 0.9rem; opacity: 0.7;">
+            <p>🔑 Test Login: <strong>admin</strong> / <strong>admin123</strong></p>
+            <p>Made with ❤️ by CyberOps</p>
+        </div>
+    </div>
+</body>
+</html>
