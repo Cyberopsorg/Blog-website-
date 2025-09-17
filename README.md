@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Digital Garden Blog 🌱✨
 
 A simple, responsive blog application with authentication and modern UI.
@@ -88,3 +89,7 @@ MIT License - feel free to use for your projects! 🆓
 ---
 
 **Made with ❤️ by CyberOps** 🚀
+=======
+# Blog-website-
+Its a personal blog website 
+>>>>>>> 265bef35b67d1476c05e298b0ecedda94de175a1
