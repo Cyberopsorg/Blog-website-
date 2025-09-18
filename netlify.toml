@@ -9,7 +9,7 @@
   NODE_VERSION = "18"
 
 [[redirects]]
-  # Handle SPA routing - redirect all routes to index.html
+  # Simple redirect for SPA
   from = "/*"
   to = "/index.html"
   status = 200

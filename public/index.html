@@ -1,649 +1,104 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Garden - A space where I share my thoughts</title>
-    
-    <!-- External Dependencies -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Custom Stylesheets -->
-    <link rel="stylesheet" href="css/main.css">
-    
-    <!-- Emergency inline styles for critical elements -->
+    <title>Digital Garden Blog 🌱</title>
     <style>
-        /* Ensure basic styling loads even if CSS fails */
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
-            background: #fefefe;
-            color: #111827;
-            line-height: 1.6;
-        }
-        
-        .header {
-            background: #ffffff;
-            border-bottom: 1px solid #e5e7eb;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 70px;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #6366f1;
-            text-decoration: none;
-        }
-        
-        .nav {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .nav-link {
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            text-decoration: none;
-            color: #6b7280;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .nav-link:hover,
-        .nav-link.active {
-            background: #6366f1;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-        }
-        
-        .btn {
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            font-size: 0.875rem;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: inline-flex;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .btn-primary {
-            background: #6366f1;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #4f46e5;
-        }
-        
-        .btn-ghost {
-            background: transparent;
-            color: #6b7280;
-            border: 1px solid #e5e7eb;
-        }
-        
-        .btn-ghost:hover {
-            background: #f3f4f6;
-        }
-        
-        .section {
-            display: none;
-            padding: 2rem 0;
-        }
-        
-        .section.active {
-            display: block;
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
-        .hero {
+            justify-content: center;
             text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-            border-radius: 12px;
-            margin: 2rem 0;
         }
-        
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: #6b7280;
-            margin-bottom: 2rem;
+        .container {
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
-        
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
-        
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
-        
-        .post-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
-            transition: all 0.2s;
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            margin: 10px;
         }
-        
-        .post-card:hover {
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
+        .features {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
         }
-        
-        .modal {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 400px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-        
-        .form-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-            margin-top: 1.5rem;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .hero-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .nav {
-                display: none;
-            }
+        .feature {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="#" onclick="showSection('home')" class="logo">
-                    🌱 <span>Digital Garden</span>
-                </a>
-                
-                <nav class="nav">
-                    <a href="#" onclick="showSection('home')" class="nav-link active" data-section="home">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                    <a href="#" onclick="showSection('posts')" class="nav-link" data-section="posts">
-                        <i class="fas fa-newspaper"></i> Posts
-                    </a>
-                    <a href="#" onclick="event.preventDefault(); return window.testBlogEditor ? window.testBlogEditor() : console.log('Editor test function not found');" class="nav-link write-btn" data-section="create">
-                        <i class="fas fa-pen"></i> Write
-                    </a>
-                    <a href="#" onclick="showSection('about')" class="nav-link" data-section="about">
-                        <i class="fas fa-user"></i> About
-                    </a>
-                </nav>
-                
-                <div class="header-actions">
-                    <button class="theme-toggle" id="themeToggle" title="Toggle dark/light theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    
-                    <!-- Auth Section -->
-                    <div class="auth-section" id="authSection">
-                        <button class="btn btn-ghost" id="loginBtn">Login</button>
-                    </div>
-                    
-                    <!-- User Menu (Hidden by default) -->
-                    <div class="user-menu hidden" id="userMenu">
-                        <div class="user-avatar" id="userAvatar">A</div>
-                        <span class="user-name" id="userName">Admin</span>
-                        <button class="btn btn-primary new-post-btn" onclick="event.preventDefault(); return window.testBlogEditor ? window.testBlogEditor() : console.log('Editor test function not found');" style="margin-right: 0.5rem;">
-                            <i class="fas fa-plus"></i> New Post
-                        </button>
-                        <button class="btn btn-ghost" onclick="logout()">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </button>
-                    </div>
-                </div>
+    <div class="container">
+        <h1>🌱 Digital Garden Blog ✨</h1>
+        <p>A beautiful, responsive blog application with modern UI and authentication</p>
+        
+        <a href="blog.html" class="btn">🚀 Enter Blog</a>
+        <a href="https://github.com/Cyberopsorg/Blog-website-" class="btn">📂 View Code</a>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🔐 Authentication</h3>
+                <p>Secure login system</p>
+            </div>
+            <div class="feature">
+                <h3>🌙 Dark/Light Theme</h3>
+                <p>Toggle themes</p>
+            </div>
+            <div class="feature">
+                <h3>📱 Responsive</h3>
+                <p>Works on all devices</p>
+            </div>
+            <div class="feature">
+                <h3>🍃 MongoDB Ready</h3>
+                <p>Database integration</p>
             </div>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main">
-        <!-- Home Section -->
-        <section class="section active" id="home">
-            <div class="container">
-                <!-- Hero Section -->
-                <div class="hero">
-                    <div class="hero-content">
-                        <h1 class="hero-title">Welcome to Digital Garden</h1>
-                        <p class="hero-subtitle">
-                            A space where I share my thoughts, experiences, and learnings about life, 
-                            technology, and the beautiful complexity of our world.
-                        </p>
-                        <div class="hero-actions">
-                            <button class="btn btn-primary" onclick="event.preventDefault(); return window.testBlogEditor ? window.testBlogEditor() : console.log('Editor test function not found');">
-                                <i class="fas fa-pen"></i>
-                                Start Writing
-                            </button>
-                            <button class="btn btn-secondary" onclick="showSection('posts')">
-                                <i class="fas fa-book-open"></i>
-                                Explore Posts
-                            </button>
-                        </div>
-                    </div>
-                    <div class="hero-visual">
-                        <div class="hero-garden">
-                            <div class="plant">🌱</div>
-                            <div class="plant">🌿</div>
-                            <div class="plant">🍃</div>
-                            <div class="plant">🌳</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Write Section -->
-                <div class="quick-write-section" style="background: var(--surface-soft); border-radius: 12px; padding: 2rem; margin: 3rem 0; text-align: center; border: 1px solid var(--border-light);">
-                    <h3 style="margin-bottom: 1rem; color: var(--text-primary);">
-                        <i class="fas fa-lightbulb" style="color: var(--primary); margin-right: 0.5rem;"></i>
-                        Got something to share?
-                    </h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                        Start writing your thoughts right here, or open the full editor for a complete experience.
-                    </p>
-                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                        <button class="btn btn-primary" onclick="event.preventDefault(); return window.testBlogEditor ? window.testBlogEditor() : console.log('Editor test function not found');" style="min-width: 140px;">
-                            <i class="fas fa-edit"></i>
-                            Full Editor
-                        </button>
-                        <button class="btn btn-outline" onclick="expandQuickWrite()" style="min-width: 140px;">
-                            <i class="fas fa-expand-arrows-alt"></i>
-                            Quick Write
-                        </button>
-                    </div>
-                    
-                    <!-- Expandable Quick Write Area (Initially Hidden) -->
-                    <div class="quick-write-area" id="quickWriteArea" style="display: none; margin-top: 2rem; text-align: left;">
-                        <div style="background: white; border-radius: 8px; padding: 1.5rem; border: 1px solid var(--border);">
-                            <input type="text" placeholder="What's your title?" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">
-                            <textarea placeholder="Start writing your thoughts..." style="width: 100%; min-height: 120px; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; resize: vertical; font-family: inherit; line-height: 1.5; margin-bottom: 1rem;"></textarea>
-                            <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
-                                <button class="btn btn-ghost" onclick="collapseQuickWrite()">Cancel</button>
-                                <button class="btn btn-primary" onclick="openFullEditor()">
-                                    <i class="fas fa-arrow-right"></i>
-                                    Continue in Full Editor
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Posts Preview -->
-                <div class="recent-posts-preview">
-                    <h2>Recent Thoughts</h2>
-                    <div class="posts-grid" id="homePostsGrid">
-                        <!-- Posts will be populated by JavaScript -->
-                    </div>
-                    <div class="view-all-posts">
-                        <button class="btn btn-outline" onclick="showSection('posts')">
-                            View All Posts
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Posts Section -->
-        <section class="section" id="posts">
-            <div class="container">
-                <div class="posts-header">
-                    <h1>All Posts</h1>
-                    <p>A collection of my thoughts and experiences</p>
-                    <div class="posts-filters">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="technology">Technology</button>
-                        <button class="filter-btn" data-filter="life">Life</button>
-                        <button class="filter-btn" data-filter="writing">Writing</button>
-                    </div>
-                </div>
-                <div class="posts-container">
-                    <div class="posts-grid" id="postsGrid">
-                        <!-- Posts will be populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Create Post Section -->
-        <section class="section" id="create">
-            <div class="container">
-                <div class="create-header">
-                    <h1>Share Your Thoughts</h1>
-                    <p>Express yourself and share your ideas with the world</p>
-                </div>
-
-                <!-- Authentication Check -->
-                <div class="auth-required hidden" id="authRequired">
-                    <div class="auth-card">
-                        <div class="auth-icon">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <h3>Authentication Required</h3>
-                        <p>You need to be logged in to create posts</p>
-                        <button class="btn btn-primary" onclick="showLoginModal()">
-                            Login to Continue
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Modern Blog Editor Interface -->
-                <div class="editor-section" id="editorSection">
-                    <!-- Simple Post Form -->
-                    <div class="simple-editor" id="simpleEditor">
-                        <form id="createPostForm">
-                            <div class="form-group">
-                                <label for="postTitle">Title</label>
-                                <input type="text" id="postTitle" placeholder="Enter your post title..." required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="postCategory">Category</label>
-                                <select id="postCategory">
-                                    <option value="general">General</option>
-                                    <option value="technology">Technology</option>
-                                    <option value="life">Life</option>
-                                    <option value="writing">Writing</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="postContent">Content</label>
-                                <textarea id="postContent" rows="10" placeholder="Write your post content here..." required></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="postTags">Tags (comma separated)</label>
-                                <input type="text" id="postTags" placeholder="e.g. javascript, web, tutorial">
-                            </div>
-                            
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-secondary" onclick="clearEditor()">
-                                    Clear
-                                </button>
-                                <button type="submit" class="btn btn-primary">
-                                    Publish Post
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    
-                    <div class="editor-welcome">
-                        <div class="welcome-content">
-                            <div class="welcome-icon">
-                                <i class="fas fa-pen-fancy"></i>
-                            </div>
-                            <h2>Ready to Write?</h2>
-                            <p>You can use the simple form above or try our advanced editor</p>
-                            
-                            <div class="editor-actions">
-                                <button class="btn btn-primary btn-large" onclick="toggleAdvancedEditor()" id="openEditorBtn">
-                                    <i class="fas fa-edit"></i>
-                                    Toggle Advanced Features
-                                </button>
-                                
-                                <button class="btn btn-secondary" onclick="showSection('posts')" id="viewPostsBtn">
-                                    <i class="fas fa-folder-open"></i>
-                                    View All Posts
-                                </button>
-                            </div>
-                            
-                            <div class="editor-features">
-                                <div class="feature">
-                                    <i class="fas fa-magic"></i>
-                                    <span>Simple Writing</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-image"></i>
-                                    <span>Image Upload</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-save"></i>
-                                    <span>Auto Save</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-mobile-alt"></i>
-                                    <span>Mobile Friendly</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="section" id="about">
-            <div class="container">
-                <div class="about-content">
-                    <div class="about-text">
-                        <h1>About This Garden</h1>
-                        <p class="about-intro">
-                            Welcome to my digital garden - a place where ideas grow, thoughts bloom, 
-                            and knowledge is cultivated through writing and sharing.
-                        </p>
-                        <div class="about-details">
-                            <h3>What You'll Find Here</h3>
-                            <ul>
-                                <li><strong>Technology Insights</strong> - My experiences and learnings in the tech world</li>
-                                <li><strong>Life Reflections</strong> - Thoughts on personal growth and life experiences</li>
-                                <li><strong>Writing Journey</strong> - My adventures in content creation and storytelling</li>
-                                <li><strong>Random Musings</strong> - Interesting observations about our complex world</li>
-                            </ul>
-                        </div>
-                        <div class="about-contact">
-                            <h3>Let's Connect</h3>
-                            <p>I'd love to hear from you! Feel free to reach out if you want to discuss any of my posts or just say hello.</p>
-                            <div class="social-links">
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-twitter"></i> Twitter
-                                </a>
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-github"></i> GitHub
-                                </a>
-                                <a href="#" class="social-link">
-                                    <i class="fas fa-envelope"></i> Email
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="about-visual">
-                        <div class="garden-illustration">
-                            <div class="garden-element">🌱</div>
-                            <div class="garden-element">🌿</div>
-                            <div class="garden-element">🍃</div>
-                            <div class="garden-element">🌳</div>
-                            <div class="garden-element">🌸</div>
-                            <div class="garden-element">🦋</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Login Modal -->
-    <div class="modal-overlay hidden" id="modalOverlay">
-        <div class="modal" id="loginModal">
-            <div class="modal-header">
-                <h3>Welcome Back</h3>
-                <button class="modal-close" onclick="closeModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="loginUsername">Username</label>
-                        <input type="text" id="loginUsername" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="loginPassword">Password</label>
-                        <input type="password" id="loginPassword" required>
-                    </div>
-                    <div class="form-actions">
-                        <button type="button" class="btn btn-secondary" onclick="closeModal()">
-                            Cancel
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                            Login
-                        </button>
-                    </div>
-                </form>
-                <div class="auth-note">
-                    <p>Default admin credentials: <code>admin</code> / <code>admin123</code></p>
-                </div>
-            </div>
+        
+        <div style="margin-top: 40px; font-size: 0.9rem; opacity: 0.7;">
+            <p>🔑 Test Login: <strong>admin</strong> / <strong>admin123</strong></p>
+            <p>Made with ❤️ by CyberOps</p>
         </div>
     </div>
-
-    <!-- Post View Modal -->
-    <div class="modal-overlay hidden" id="postModalOverlay">
-        <div class="modal post-modal" id="postModal">
-            <div class="modal-header">
-                <h3 id="postModalTitle">Post Title</h3>
-                <button class="modal-close" onclick="closePostModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="post-modal-content" id="postModalContent">
-                    <!-- Post content will be populated here -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Notification Toast -->
-    <div class="toast hidden" id="toast">
-        <div class="toast-content">
-            <div class="toast-icon">
-                <i class="fas fa-check"></i>
-            </div>
-            <div class="toast-message" id="toastMessage">
-                Message here
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-        <!-- JavaScript -->
-    <script>
-        // Debug logging for main page
-        window.addEventListener('load', () => {
-            console.log('=== BLOG SYSTEM DEBUG ===');
-            console.log('1. ModernBlogEditor class available:', typeof ModernBlogEditor !== 'undefined');
-            console.log('2. window.blogEditor instance:', !!window.blogEditor);
-            console.log('3. garden instance:', !!window.garden);
-            console.log('4. Write button found:', !!document.querySelector('.write-btn'));
-            console.log('5. New Post button found:', !!document.querySelector('.new-post-btn'));
-            console.log('6. User menu visible:', !document.getElementById('userMenu').classList.contains('hidden'));
-            console.log('==========================');
-        });
-    </script>
-    
-    <!-- Full Stack Application Scripts -->
-    <script src="js/api.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html>
