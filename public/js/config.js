@@ -13,9 +13,10 @@ const CONFIG = {
         DEBUG: false
     },
     netlify: {
-        API_BASE_URL: '/api', // Uses Netlify redirects to proxy to backend
-        APP_NAME: 'Digital Garden Blog',
-        DEBUG: false
+        API_BASE_URL: '/api', // Uses demo mode for static hosting
+        APP_NAME: 'Digital Garden Blog (Demo)',
+        DEBUG: false,
+        DEMO_MODE: true
     }
 };
 

@@ -105,6 +105,23 @@ function initializeUI() {
 function verifyAuthToken(token) {
     console.log('🔍 Verifying auth token...');
     
+    // Use demo mode if on static hosting
+    if (window.demoAPI && window.isStaticDeployment && window.isStaticDeployment()) {
+        if (window.demoAPI.isAuthenticated()) {
+            currentUser = window.demoAPI.getCurrentUser();
+            console.log('✅ User verified (Demo Mode):', currentUser.username);
+            updateAuthUI();
+            loadPosts();
+        } else {
+            console.log('❌ Demo token invalid, removing...');
+            localStorage.removeItem('authToken');
+            updateAuthUI();
+            loadPosts();
+        }
+        return;
+    }
+    
+    // Original backend API call for development/production
     fetch('/api/auth/verify', {
         method: 'GET',
         headers: { 
@@ -145,6 +162,32 @@ function verifyAuthToken(token) {
 function loadPosts() {
     console.log('📚 Loading posts...');
     
+    // Check if we're on a static hosting platform (not localhost)
+    const isStaticHosting = !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1');
+    
+    // Use demo mode if available and we're on static hosting
+    if (window.demoAPI && isStaticHosting) {
+        console.log('🎭 Using Demo Mode for posts');
+        window.demoAPI.getPosts().then(data => {
+            if (data.success) {
+                posts = data.posts || [];
+                renderPosts();
+                console.log(`✅ Loaded ${posts.length} posts (Demo Mode)`);
+            } else {
+                console.error('Failed to load posts:', data.message);
+                posts = [];
+                renderPosts();
+            }
+        }).catch(error => {
+            console.error('Error loading posts:', error);
+            posts = [];
+            renderPosts();
+        });
+        return;
+    }
+    
+    // Original backend API call for development/production
+    console.log('🌐 Attempting backend API connection...');
     fetch('http://127.0.0.1:9090/api/posts')
         .then(response => response.json())
         .then(data => {
@@ -160,6 +203,7 @@ function loadPosts() {
         })
         .catch(error => {
             console.error('Error loading posts:', error);
+            console.log('💡 Backend not available - this is normal for static hosting');
             posts = [];
             renderPosts();
         });
@@ -345,6 +389,30 @@ async function deletePost(postId) {
 // Login function
 async function login(username, password) {
     try {
+        // Check if we're on a static hosting platform (not localhost)
+        const isStaticHosting = !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1');
+        
+        // Use demo mode if available and we're on static hosting
+        if (window.demoAPI && isStaticHosting) {
+            console.log('🎭 Using Demo Mode for login');
+            const result = await window.demoAPI.login(username, password);
+            
+            if (result.success) {
+                currentUser = result.user;
+                localStorage.setItem('authToken', result.token);
+                updateAuthUI();
+                closeModal();
+                showNotification('Login successful! (Demo Mode)', 'success');
+                loadPosts(); // Reload posts to show admin actions
+                return true;
+            } else {
+                showNotification(result.message || 'Login failed', 'error');
+                return false;
+            }
+        }
+        
+        // Original backend API call for development/production
+        console.log('🌐 Attempting backend API login...');
         const response = await fetch('http://127.0.0.1:9090/api/auth/login', {
             method: 'POST',
             headers: {
@@ -376,6 +444,24 @@ async function login(username, password) {
 
 // Logout function
 function logout() {
+    // Check if we're on a static hosting platform (not localhost)
+    const isStaticHosting = !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1');
+    
+    // Use demo mode if available and we're on static hosting
+    if (window.demoAPI && isStaticHosting) {
+        console.log('🎭 Using Demo Mode for logout');
+        window.demoAPI.logout().then(() => {
+            currentUser = null;
+            localStorage.removeItem('authToken');
+            updateAuthUI();
+            showNotification('Logged out successfully (Demo Mode)', 'success');
+            showSection('home');
+            loadPosts(); // Reload posts to hide admin actions
+        });
+        return;
+    }
+    
+    // Original logout for development/production
     currentUser = null;
     localStorage.removeItem('authToken');
     updateAuthUI();
@@ -398,6 +484,27 @@ async function createPost() {
     }
     
     try {
+        // Check if we're on a static hosting platform (not localhost)
+        const isStaticHosting = !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1');
+        
+        // Use demo mode if available and we're on static hosting
+        if (window.demoAPI && isStaticHosting) {
+            console.log('🎭 Using Demo Mode for creating post');
+            const result = await window.demoAPI.createPost(title, content, tags);
+            
+            if (result.success) {
+                showNotification(result.message || 'Post created successfully!', 'success');
+                clearEditor();
+                showSection('posts');
+                loadPosts();
+            } else {
+                showNotification(result.message || 'Failed to create post', 'error');
+            }
+            return;
+        }
+        
+        // Original backend API call for development/production
+        console.log('🌐 Attempting backend API post creation...');
         const response = await fetch('/api/posts', {
             method: 'POST',
             headers: {
