@@ -5,7 +5,9 @@
   "main": "basic-server.js",
   "scripts": {
     "start": "node basic-server.js",
-    "dev": "node basic-server.js"
+    "dev": "node basic-server.js",
+    "build": "echo 'No build needed - static site'",
+    "serve": "cd public && python -m http.server 8080"
   },
   "keywords": ["blog", "mongodb", "nodejs", "javascript"],
   "author": "CyberOps",
